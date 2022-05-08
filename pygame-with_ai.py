@@ -36,7 +36,7 @@ if module_availability:
 	game_count = 0
 	with open("dataset.json", "r") as file_data:
 		q_table = json.load(file_data)
-	file_data.close()
+		file_data.close()
 	def add_coordinates(coordinates_1, coordinates_2):
 		x_coordinate = coordinates_1[0] + coordinates_2[0]
 		y_coordinate = coordinates_1[1] + coordinates_2[1]
