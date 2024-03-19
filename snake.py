@@ -313,7 +313,7 @@ class Environment(object):
                     return snake.get_score()
                 if keys[pygame.K_t]:
                     self.__display.change_tick(
-                        int(input("Enter tick[10]: ") or 0) or 10
+                        int(input("Enter tick[10]: ").strip() or "10")
                     )
 
                 action = 0
@@ -432,17 +432,20 @@ class Environment(object):
 
 
 if __name__ == "__main__":
-    if int(input("Enter 0 for running agent or 1 for playing game: ") or 0) == 0:
+    if (
+        int(input("Enter 0 for running agent or 1 for playing game: ").strip() or "0")
+        == 0
+    ):
         env = Environment(
-            int(input("Enter pixel size[20]: ") or 0) or 20,
-            int(input("Enter tick[10]: ") or 0) or 10,
+            int(input("Enter pixel size[40]: ").strip() or "40"),
+            int(input("Enter tick[10]: ").strip() or "10"),
         )
         env.agent()
         env.destroy()
     else:
         env = Environment(
-            int(input("Enter pixel size[20]: ") or 0) or 20,
-            int(input("Enter tick[10]: ") or 0) or 10,
+            int(input("Enter pixel size[40]: ").strip() or "40"),
+            int(input("Enter tick[2]: ").strip() or "2"),
         )
         print("Score:", env.play())
         env.destroy()
