@@ -40,6 +40,5 @@ model.fit(x_train, y_train)
 y_pred = model.predict(x_test)
 mse["svc"] = mean_squared_error(y_test, y_pred)
 
-print(mse)
 plt.bar(list(mse.keys()), list(mse.values()), color="green")
 plt.show()
