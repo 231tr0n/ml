@@ -13,7 +13,7 @@ scaled_features = StandardScaler().fit_transform(X)
 
 model = KMeans(
     n_clusters=3,
-    max_iter=10,
+    max_iter=50,
 )
 model.fit(X)
 
@@ -29,6 +29,6 @@ for i in model.cluster_centers_:
     cx += [round(i[0], 2)]
     cy += [round(i[1], 2)]
 
-plt.plot(x, y, c="green")
-plt.plot(cx, cy, c="red")
+plt.scatter(x, y, c="green")
+plt.scatter(cx, cy, c="red")
 plt.show()
