@@ -1,0 +1,51 @@
+services:
+  ollama:
+    image: ollama/ollama:latest
+    volumes:
+      - ollama:/root/.ollama
+    container_name: ollama
+    pull_policy: always
+    tty: true
+    networks:
+      - no-internet
+    restart: unless-stopped
+
+  ollaman:
+    image: ollama/ollama:latest
+    volumes:
+      - ollama:/root/.ollama
+    container_name: ollaman
+    pull_policy: always
+    tty: true
+    networks:
+      - internet
+    restart: unless-stopped
+
+  proxy:
+    image: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    container_name: proxy
+    pull_policy: always
+    tty: true
+    depends_on:
+      - ollama
+      - ollaman
+    ports:
+      - "11434:11434"
+      - "11434:11435"
+    networks:
+      - no-internet
+      - internet
+    restart: unless-stopped
+
+networks:
+  no-internet:
+    driver: bridge
+    internal: true
+  internet:
+    driver: bridge
+
+volumes:
+  ollama: {}
+  ollamaui: {}
