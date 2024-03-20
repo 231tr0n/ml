@@ -33,7 +33,7 @@ services:
       - ollaman
     ports:
       - "11434:11434"
-      - "11434:11435"
+      - "11435:11435"
     networks:
       - no-internet
       - internet
